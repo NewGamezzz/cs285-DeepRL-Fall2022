@@ -88,6 +88,8 @@ def main():
 
     # convert to dictionary
     params = vars(args)
+    print("reward_to_go:", params["reward_to_go"])
+    print("discount:", params["discount"])
 
     # for policy gradient, we made a design decision
     # to force batch_size = train_batch_size

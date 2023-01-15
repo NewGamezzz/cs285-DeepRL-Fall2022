@@ -165,7 +165,7 @@ class MLPPolicyPG(MLPPolicy):
             norm_q_values = (q_values - q_values.mean()) / q_values.std()
 
             predicted_baseline = self.baseline(observations)
-            baseline_loss = self.baseline_loss(predicted_baseline, norm_q_values)
+            baseline_loss = self.baseline_loss(predicted_baseline.flatten(), norm_q_values.flatten())
             baseline_loss.backward()
             self.baseline_optimizer.step()
             self.baseline_optimizer.zero_grad()
