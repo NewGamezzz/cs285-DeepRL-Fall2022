@@ -1,10 +1,10 @@
 import gym
 
-env = gym.make("Ant-v4", render_mode="human")
+env = gym.make("MsPacman-v4", render_mode="human")
 
 observation = env.reset(seed=42)
 for _ in range(1000):
-    env.render()
+    # env.render()
     action = env.action_space.sample() # User-defined policy function
     observation, reward, terminated, info = env.step(action)
 
