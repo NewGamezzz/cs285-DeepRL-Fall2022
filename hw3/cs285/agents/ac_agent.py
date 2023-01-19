@@ -7,6 +7,8 @@ from cs285.infrastructure.utils import *
 from cs285.policies.MLP_policy import MLPPolicyAC
 from .base_agent import BaseAgent
 
+import torch
+
 
 class ACAgent(BaseAgent):
     def __init__(self, env, agent_params):
@@ -64,9 +66,7 @@ class ACAgent(BaseAgent):
         current_s_value = self.critic.forward_np(ob_no)
         next_s_value = self.critic.forward_np(next_ob_no)
 
-        Q_value = re_n
-        if not terminal_n:
-            Q_value += self.gamma * next_s_value
+        Q_value = re_n + self.gamma * next_s_value * (terminal_n == False)
 
         adv_n = Q_value - current_s_value
 
